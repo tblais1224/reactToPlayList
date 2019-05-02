@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Toplays from './toplays';
+import AddToplay from './addToplay'
 
 class App extends Component {
 
@@ -20,11 +21,20 @@ class App extends Component {
     })
   }
 
+  addToPlay = (toplay) => {
+    toplay.id = Math.random();
+    let toplays = [...this.state.toplays, toplay];
+    this.setState({
+      toplays
+    })
+  }
+
   render() {
     return (
       <div className="toplay-app container">
         <h1 className="center blue-text">Toplay's</h1>
         <Toplays toplays={this.state.toplays} deleteToplay={this.deleteToplay}></Toplays>
+        <AddToplay addToplay={this.addToPlay}></AddToplay>
       </div>
     );
   }
