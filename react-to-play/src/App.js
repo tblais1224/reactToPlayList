@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Toplays from './toplays';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  state = {
+    toplays: [
+      { id: 1, content: "Red Dead Redemption 2" },
+      { id: 2, content: "Bioshock" }
+    ]
+  }
+
+  deleteToplay = (id) =>{
+    const toplays = this.state.toplays.filter(toplay => {
+      //if toplay id is not equal to id return true
+      return toplay.id !== id
+    });
+    this.setState({
+      toplays
+    })
+  }
+
+  render() {
+    return (
+      <div className="toplay-app container">
+        <h1 className="center blue-text">Toplay's</h1>
+        <Toplays toplays={this.state.toplays} deleteToplay={this.deleteToplay}></Toplays>
+      </div>
+    );
+  }
 }
 
 export default App;
